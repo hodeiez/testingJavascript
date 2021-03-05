@@ -1,0 +1,13 @@
+#screen{
+    background-color: rgb(0, 0, 0);
+    height: 200px;
+    width: 100%;
+    
+}
+#player{
+    background-color:blanchedalmond;
+    height: 50px;
+    width: 60px;
+    transition: 0.2s;
+    margin: 0 0 0 0;
+}
