@@ -20,7 +20,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <!-- <script src="game.js"></script>-->
+   <script src="game.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -92,7 +92,7 @@
       </div>
       
     </div>
-    <div class="row">
+    <div class="row"><h3>Move the box with the arrow keys</h3>
         <div id="screen">
             <div id="player">
             </div>
@@ -103,32 +103,6 @@
     </div>
     <script>
 document.onkeydown = detectKey;
-function detectKey(e) {
-
-var posLeft = document.getElementById("player").offsetLeft;
-var posTop = document.getElementById("player").offsetTop;
-const speed= 30;
-
-e = e || window.event;
-
-if (e.keyCode == '32') {
-    // up arrow
-    document.getElementById("player").style.marginTop  = (posTop-speed)+"px";
-}
-else if (e.keyCode == '40') {
-    // down arrow
-    document.getElementById("player").style.marginTop  = (posTop+speed)+"px";
-}
-else if (e.keyCode == '37') {
-   // left arrow
-    document.getElementById("player").style.marginLeft  = (posLeft-speed)+"px";
-}
-else if (e.keyCode == '39') {
-   // right arrow
-    document.getElementById("player").style.marginLeft  = (posLeft+speed)+"px";
-}
-
-}
 
       let input = document.getElementById("searchField");
       let reversed = document.getElementById("reversed");
