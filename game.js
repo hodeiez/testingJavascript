@@ -1,4 +1,6 @@
-
+var player={
+    
+}
 
 function detectKey(e) {
 
@@ -20,7 +22,7 @@ function detectKey(e) {
     else if (e.keyCode == '37') {
        // left arrow
         document.getElementById("player").style.marginLeft  = (posLeft-58)+"px";
-       
+        document.getElementById("player").style.rotate = "45deg";
     }
     else if (e.keyCode == '39') {
        // right arrow

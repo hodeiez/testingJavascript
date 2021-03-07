@@ -99,11 +99,68 @@
         </div>
     
     </div>
-    
+    <div class="row">
+      <h3>-Show date</h3>
+      <div class="col">
+<button onClick="getTime();">show time</button>
+      </div>
+      <div class="col">
+<h3 id="time"></h3>
+      </div>
+    </div>
+    <div class="row">
+      <h3>count call costs</h3>
+      <div class="col">
+        <form class="form-inline my-2 my-lg-0">
+            <input
+              id="ringingMinutes"
+              class="form-control mr-sm-2"
+              type="search"
+              placeholder="Type minutes you have been on phone"
+              aria-label="Search"
+            />
+    </div>
+    <div class="col">
+      <form class="form-inline my-2 my-lg-0">
+          <input
+            id="pricePerMinute"
+            class="form-control mr-sm-2"
+            type="search"
+            placeholder="type price per minute"
+            aria-label="Search"
+          />
+  </div>
+  <div class="col">
+    <button onclick="callPrice()">calculate</button>
+  </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <input id="pass" type="password"/>
+        <input id="check" type="checkbox" onclick="showPassword()" value="1"/>
+      </div>
+    </div>
     </div>
     <script>
-document.onkeydown = detectKey;
 
+      //password checkBox
+      function showPassword(){
+        document.getElementById("pass").type="text";
+
+      }
+      //calculate callPrice
+      function callPrice(){
+        alert(document.getElementById("ringingMinutes").value*document.getElementById("pricePerMinute").value);
+      }
+//show date function
+function getTime(){
+  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  let date=new Date().toLocaleDateString("sv-SV",options);
+  document.getElementById("time").innerText=date;
+}
+      //here calling the game function to detect key
+document.onkeydown = detectKey;
+//down here first row
       let input = document.getElementById("searchField");
       let reversed = document.getElementById("reversed");
       let numberfyied = document.getElementById("numberfyied");
