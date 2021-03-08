@@ -47,15 +47,21 @@ function drawBall(x, y, radius, color) {
   ctx.fill();
 }
 function drawBrick(x,y,width,height,color){
+
   ctx.fillStyle=color;
+
   ctx.fillRect(x,y,width,height);
+
 }
 function render() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawPaddle(user.x, user.y, user.width, user.height, user.color);
   drawBall(ball.x, ball.y, ball.radius, ball.color);
+
   drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
+  
+  //drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
 }
 
 
