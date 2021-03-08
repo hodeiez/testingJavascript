@@ -35,6 +35,11 @@ const ball = {
 };
 
 //draw
+function drawScore(x,y,score){
+  ctx.fillStyle = '#fff';
+  ctx.font = '35px sans-serif';
+  ctx.fillText(score, x, y);
+}
 function drawPaddle(x, y, width, height, color) {
   ctx.fillStyle = color;
   ctx.fillRect(x, y, width, height);
@@ -60,7 +65,7 @@ function render() {
   drawBall(ball.x, ball.y, ball.radius, ball.color);
 
   drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
-  
+  drawScore(canvas.width/10,canvas.height/9,user.score);
   //drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
 }
 
@@ -122,6 +127,7 @@ let player=user;
     console.log("hit");
     brick.x=1000;
     brick.color="#0000"
+    user.score++;
   }
 }
 function collisionDetect(player, ball) {
