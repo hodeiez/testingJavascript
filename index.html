@@ -20,7 +20,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-   <script src="game.js"></script>
+ 
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -61,8 +61,8 @@
         </form>
       </div>
     </nav>
-    <div class="container">
-        <div class="row">
+    <div class="container ">
+        <div class="row justify-content-center mt-5">
             <div class="col">
             <form class="form-inline my-2 my-lg-0">
                 <input
@@ -78,7 +78,7 @@
         </div>
     </div>
     
-      <div class="row">
+      <div class="row justify-content-center mt-5">
         <div class="col">
           <h3>here returns reversed</h3>
           <h3" id="reversed"></h3>
@@ -91,24 +91,25 @@
         </div>
       </div>
       
-    
-    <div class="row"><h3>Move the box with the arrow keys</h3>
+    <!-- old game test-->
+  <!--  <div class="row"><h3>Move the box with the arrow keys</h3>
         <div id="screen">
             <div id="player">
             </div>
         </div>
+      -->  
     
-    </div>
-    <div class="row">
-      <h3>-Show date</h3>
+    
+    <div class="row justify-content-center mt-5">
+      <h3>Show date</h3>
       <div class="col">
-<button onClick="getTime();">show time</button>
+<button class="btn btn-dark" onClick="getTime();">show time</button>
       </div>
       <div class="col">
 <h3 id="time"></h3>
       </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center mt-5">
       <h3>count call costs</h3>
       <div class="col">
         <form class="form-inline my-2 my-lg-0">
@@ -134,13 +135,21 @@
     <button onclick="callPrice()">calculate</button>
   </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center mt-5">
       <div class="col">
         <input id="pass" type="password"/>
         <input id="check" type="checkbox" onclick="showPassword()" value="1"/>
       </div>
     </div>
+    <div class="row justify-content-center mt-5">
+      <h3>My ARKANOID</h3>
+    </div>
+      <div class="row justify-content-center">
+    <canvas id="canvas" width="600" height="400"></canvas>
   </div>
+  
+  </div>
+</div>
     <script>
 
       //password checkBox
@@ -159,7 +168,7 @@ function getTime(){
   document.getElementById("time").innerText=date;
 }
       //here calling the game function to detect key
-document.onkeydown = detectKey;
+//document.onkeydown = detectKey;
 //down here first row
       let input = document.getElementById("searchField");
       let reversed = document.getElementById("reversed");
@@ -170,5 +179,6 @@ document.onkeydown = detectKey;
     
       });
     </script>
+      <script src="game.js"></script>
   </body>
 </html>
