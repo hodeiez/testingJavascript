@@ -16,6 +16,14 @@ const user = {
   color: "#FFFFFF",
   score: 0,
 };
+const brick = {
+  x: canvas.width / 2 - paddleWidth / 2,
+  y: canvas.height-(canvas.height-10),
+  width:30,
+  height:10,
+  color: "#03fc6f",
+};
+
 const ball = {
   x: canvas.width / 2,
   y: canvas.height / 2,
@@ -23,7 +31,7 @@ const ball = {
   speed: 1,
   velocityX: 1,
   velocityY: 1,
-  color: "#FFFFFF",
+  color: "#ca03fc",
 };
 
 //draw
@@ -38,11 +46,16 @@ function drawBall(x, y, radius, color) {
   ctx.closePath();
   ctx.fill();
 }
+function drawBrick(x,y,width,height,color){
+  ctx.fillStyle=color;
+  ctx.fillRect(x,y,width,height);
+}
 function render() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawPaddle(user.x, user.y, user.width, user.height, user.color);
   drawBall(ball.x, ball.y, ball.radius, ball.color);
+  drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
 }
 
 
@@ -71,7 +84,7 @@ let player=user;
   if(ball.y + ball.radius>=canvas.height){
     reset();
   }
-
+//TODO: fix the angle depending on where in player hits
   if (collisionDetect(player, ball)) {
     // play hitSound
    
@@ -89,6 +102,8 @@ let player=user;
       angle = Math.PI / 4;
       
     }
+  
+
 
     /* change velocity of ball according to on which paddle the ball hitted */
     ball.velocityY =  -1*ball.speed*0.1 * Math.cos(angle);
@@ -97,7 +112,11 @@ let player=user;
     // increase ball speed
     ball.speed += 0.2;
   }
-  
+  if(collisionDetect(brick,ball)){
+    console.log("hit");
+    brick.x=1000;
+    brick.color="#0000"
+  }
 }
 function collisionDetect(player, ball) {
   // returns true or false
@@ -111,6 +130,21 @@ function collisionDetect(player, ball) {
   ball.bottom = ball.y + ball.radius;
   ball.left = ball.x - ball.radius;
 
+
+ // return ball.top < player.top;
+  return ball.left < player.right && ball.top < player.bottom && ball.right > player.left && ball.bottom > player.top;
+}
+function brickCollisionDetect(player, ball) {
+  // returns true or false
+  player.top = player.y;
+  player.right = player.x + player.width;
+  player.bottom = player.y + player.height;
+  player.left = player.x;
+
+  ball.top = ball.y - ball.radius;
+  ball.right = ball.x + ball.radius;
+  ball.bottom = ball.y + ball.radius;
+  ball.left = ball.x - ball.radius;
 
  // return ball.top < player.top;
   return ball.left < player.right && ball.top < player.bottom && ball.right > player.left && ball.bottom > player.top;
