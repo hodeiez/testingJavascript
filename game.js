@@ -3,7 +3,7 @@ const ctx = canvas.getContext("2d");
 
 const paddleWidth = 100;
 const paddleHeight = 10;
-const playerSpeed = 4;
+const playerSpeed = 2;
 let leftArrowPressed = false;
 let rightArrowPressed = false;
 let gameover=false;
@@ -122,14 +122,30 @@ let player=user;
 
       //if ball hit left side paddle
     if (ball.x < (player.x + player.width / 2)) {
-  
-      angle = -1 * Math.PI / 4;
-
+        if(ball.x>(player.x+player.width / 8)){
+      //-45 deg
+          angle = -1 * Math.PI / 4;
+      
+        }
+        else{
+        //-60 deg
+          angle = -1 * Math.PI /3;
+      
+        }
     }
     //if ball hit right side
     else if (ball.x > (player.x + player.width / 2)) {
-    
-      angle =  Math.PI / 4;
+      if(ball.x>(player.x+player.width / 2+player.width / 8)){
+        //60 deg
+            angle = Math.PI / 3;
+        
+          }
+          else{
+          //45 deg
+            angle = Math.PI /4;
+        
+          }
+      //angle =  Math.PI / 4;
       
     }
   
