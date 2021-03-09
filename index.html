@@ -107,10 +107,10 @@
     <div class="row justify-content-center mt-5">
       <h3>Show date</h3>
       <div class="col">
-<button class="btn btn-dark" onClick="getTime();">show time</button>
+<button class="btn btn-dark" type="button" onclick="getTime();" >show time</button>
       </div>
       <div class="col">
-<h3 id="time"></h3>
+<p id="time"></p>
       </div>
     </div>
     <div class="row justify-content-center mt-5">
@@ -172,9 +172,13 @@
       }
 //show date function
 function getTime(){
-  let options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  let date=new Date().toLocaleDateString("sv-SV",options);
-  document.getElementById("time").innerText=date;
+ const textElement=document.getElementById("time");
+  let theDate=new Date();
+  let options = { weekday: 'long'};
+  let optionsRest = { year: 'numeric', month: 'long', day: 'numeric' };
+  let dateDay=theDate.toLocaleDateString("sv-SV",options);
+  let dateRest=theDate.toLocaleDateString("sv-SV",optionsRest);
+  textElement.innerHTML=dateDay.charAt(0).toUpperCase() + dateDay.slice(1)+" den "+ dateRest;
 }
       //here calling the game function to detect key
 //document.onkeydown = detectKey;
