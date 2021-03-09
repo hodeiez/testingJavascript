@@ -35,9 +35,11 @@ const ball = {
 };
 let brickArr=new Array();
   for(let i=0;i<19;i++){
+    for(let j=0;j<3;j++){
     //let bricks=new Bricks(canvas.width/2 + i, brick.y,brick.width,brick.height,brick.color);
-    let bricks={x:canvas.width-i*33, y:brick.y, width:brick.width, height:brick.height, color:brick.color};
+    let bricks={x:canvas.width-i*33, y:brick.y+j*13, width:brick.width, height:brick.height, color:brick.color};
      brickArr.push(bricks);
+    }
   }
   
 
@@ -74,7 +76,7 @@ function render() {
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawPaddle(user.x, user.y, user.width, user.height, user.color);
   drawBall(ball.x, ball.y, ball.radius, ball.color);
-  drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
+  //drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
 
   drawScore(canvas.width/10,canvas.height/9,user.score);
   //drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
@@ -136,11 +138,21 @@ let player=user;
     // increase ball speed
     ball.speed += 0.2;
   }
+  /*
   if(collisionDetect(brick,ball)){
     console.log("hit");
     brick.x=1000;
     brick.color="#0000"
     user.score++;
+  }
+  */
+ //when brick collides with ball
+  for(let i =0;i<brickArr.length;i++){
+    if(collisionDetect(brickArr[i],ball)){
+      brickArr[i].x=1000;
+    brickArr[i].color="#0000"
+    user.score++;
+    }
   }
 }
 function collisionDetect(player, ball) {
@@ -159,6 +171,7 @@ function collisionDetect(player, ball) {
  // return ball.top < player.top;
   return ball.left < player.right && ball.top < player.bottom && ball.right > player.left && ball.bottom > player.top;
 }
+//copy of method, gonna change it
 function brickCollisionDetect(player, ball) {
   // returns true or false
   player.top = player.y;
