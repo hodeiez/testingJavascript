@@ -33,6 +33,13 @@ const ball = {
   velocityY: 1,
   color: "#ca03fc",
 };
+let brickArr=new Array();
+  for(let i=0;i<19;i++){
+    //let bricks=new Bricks(canvas.width/2 + i, brick.y,brick.width,brick.height,brick.color);
+    let bricks={x:canvas.width-i*33, y:brick.y, width:brick.width, height:brick.height, color:brick.color};
+     brickArr.push(bricks);
+  }
+  
 
 //draw
 function drawScore(x,y,score){
@@ -52,21 +59,26 @@ function drawBall(x, y, radius, color) {
   ctx.fill();
 }
 function drawBrick(x,y,width,height,color){
-
   ctx.fillStyle=color;
-
   ctx.fillRect(x,y,width,height);
-
 }
+console.log(brickArr[1].color);
+function drawBricks(){
+  for(let i=0;i<brickArr.length;i++){
+    drawBrick(brickArr[i].x,brickArr[i].y,brickArr[i].width,brickArr[i].height,brickArr[i].color);
+  }
+}
+
 function render() {
   ctx.fillStyle = "#000";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawPaddle(user.x, user.y, user.width, user.height, user.color);
   drawBall(ball.x, ball.y, ball.radius, ball.color);
-
   drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
+
   drawScore(canvas.width/10,canvas.height/9,user.score);
   //drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
+  drawBricks();
 }
 
 
