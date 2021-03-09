@@ -5,7 +5,7 @@ const paddleWidth = 100;
 const paddleHeight = 10;
 let leftArrowPressed = false;
 let rightArrowPressed = false;
-
+let gameover=false;
 //objects
 
 const user = {
@@ -93,6 +93,7 @@ let player=user;
     ball.velocityX=-ball.velocityX; 
   }
   if(ball.y + ball.radius>=canvas.height){
+    gameover=true;
     reset();
   }
 //TODO: fix the angle depending on where in player hits
@@ -116,7 +117,7 @@ let player=user;
   
 
 
-    /* change velocity of ball according to on which paddle the ball hitted */
+    /* change velocity of ball according to on which paddle the ball hit */
     ball.velocityY =  -1*ball.speed*0.1 * Math.cos(angle);
     ball.velocityX = ball.speed*0.1 * Math.sin(angle);
 
@@ -162,6 +163,7 @@ function brickCollisionDetect(player, ball) {
   return ball.left < player.right && ball.top < player.bottom && ball.right > player.left && ball.bottom > player.top;
 }
 function reset(){
+  
   ball.x=canvas.width/2;
   ball.y=canvas.height/2;
   ball.speed=7;
@@ -170,9 +172,10 @@ ball.velocityY=-ball.velocityY;
 ball.velocityX=-ball.velocityX;
 }
 //moving
-window.addEventListener('keydown', keyLeftHandler);
-window.addEventListener('keyup', keyRightHandler);
-function keyLeftHandler(event) {
+window.addEventListener('keydown', keyDownHandler);
+window.addEventListener('keyup', keyUpHandler);
+
+function keyDownHandler(event) {
  
   switch (event.keyCode) {
     case 39:
@@ -183,7 +186,7 @@ function keyLeftHandler(event) {
       break;
   }
 }
-function keyRightHandler(event) {
+function keyUpHandler(event) {
   switch (event.keyCode) {
     case 39:
       leftArrowPressed = false;
