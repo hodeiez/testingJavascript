@@ -3,6 +3,7 @@ const ctx = canvas.getContext("2d");
 
 const paddleWidth = 100;
 const paddleHeight = 10;
+const playerSpeed = 4;
 let leftArrowPressed = false;
 let rightArrowPressed = false;
 let gameover=false;
@@ -90,10 +91,10 @@ let player=user;
 
   if(rightArrowPressed && user.x>0){
    
-    user.x-=8;
+    user.x-=playerSpeed;
   }
   else if(leftArrowPressed &&(user.x<canvas.width-user.width)){
-    user.x +=8;
+    user.x +=playerSpeed;
   }
 
 
@@ -112,20 +113,23 @@ let player=user;
   }
 //TODO: fix the angle depending on where in player hits
   if (collisionDetect(player, ball)) {
-    // play hitSound
-   
+  
     // default angle is 0deg in Radian
     let angle = 0;
+    console.log(player.x + " x " + (player.width / 2));
+    console.log(ball.x);
+    // if ball hit middle ppadle
 
-    // if ball hit the top of paddle
-    if (ball.y < (player.y + player.height / 2)) {
-    
-      // then -1 * Math.PI / 4 = -45deg
+      //if ball hit left side paddle
+    if (ball.x < (player.x + player.width / 2)) {
+  
       angle = -1 * Math.PI / 4;
-    } else if (ball.y > (player.y + player.height / 2)) {
-      
-      // then angle will be Math.PI / 4 = 45deg
-      angle = Math.PI / 4;
+
+    }
+    //if ball hit right side
+    else if (ball.x > (player.x + player.width / 2)) {
+    
+      angle =  Math.PI / 4;
       
     }
   
@@ -152,6 +156,7 @@ let player=user;
       brickArr[i].x=1000;
     brickArr[i].color="#0000"
     user.score++;
+    document.getElementById("score").innerHTML=user.score;
     }
   }
 }
@@ -226,6 +231,7 @@ function gameLoop() {
   render();
 }
 setInterval(gameLoop, 100 / 60);
+
 //testin to move elements by cursor
 /*
 function detectKey(e) {
