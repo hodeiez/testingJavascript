@@ -161,7 +161,9 @@
 
       //password checkBox
       function showPassword(){
-        document.getElementById("pass").type="text";
+        let element=document.getElementById("pass");
+        (element.type==="password")?element.type="text":element.type="password";
+        
     
       }
       //calculate callPrice
