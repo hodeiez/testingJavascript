@@ -29,9 +29,9 @@ const ball = {
   x: canvas.width / 2,
   y: canvas.height / 2,
   radius: 7,
-  speed: 1,
-  velocityX: 1,
-  velocityY: 1,
+  speed: 2,
+  velocityX: 2,
+  velocityY: 2,
   color: "#ca03fc",
 };
 let brickArr=new Array();
@@ -156,7 +156,9 @@ let player=user;
     ball.velocityX = ball.speed*0.1 * Math.sin(angle);
 
     // increase ball speed
-    ball.speed += 0.2;
+    ball.speed += 2;
+    //increase player speed?
+   // playerSpeed += 2;
   }
   /*
   if(collisionDetect(brick,ball)){
@@ -212,7 +214,7 @@ function reset(){
   
   ball.x=canvas.width/2;
   ball.y=canvas.height/2;
-  ball.speed=7;
+  ball.speed=2;
 
 ball.velocityY=-ball.velocityY;
 ball.velocityX=-ball.velocityX;

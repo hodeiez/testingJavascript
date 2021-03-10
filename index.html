@@ -161,9 +161,32 @@
     <div class="col-2">
       <h3 id="score">0 </h3>
     </div>
+  </div><h3 class="m-5 d-flex justify-content-center">TODO LIST</h3>
+  <div class="m-5 row justify-content-center">
+    
+    
+    
+      <input
+      id="todo-field"
+        class="form-control mr-sm-2 col"
+        type="search"
+        placeholder="Search"
+        aria-label="Search"
+      />
+      <button id="add-todo" class="btn btn-outline-secondary col-4" type="button" onclick="addTodo()">
+        add
+      </button>
+      
+   
   </div>
-  
-  </div>
+  <ul id="myList" class="list-group">
+       <li class="list-group-item todo-item">laundry</li>
+       <li class="list-group-item todo-item">study</li>
+       <li class="list-group-item todo-item">exercise</li>
+       <li class="list-group-item todo-item">dinner</li>
+       <li class="list-group-item todo-item">party</li>
+
+  </ul>
 </div>
     <script>
 
@@ -199,6 +222,28 @@ function getTime(){
         numberfyied.innerText = e.target.value.length;
     
       });
+//the todo list
+var myNodelist = document.getElementsByClassName("todo-item");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+function addTodo(){
+let item=document.createElement("li");
+item.innerText=document.getElementById("todo-field").value;
+item.className="list-group-item todo-item";
+var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  item.appendChild(span);
+document.getElementById("myList").appendChild(item);
+document.getElementById("todo-field").innerText="";
+}
     </script>
       <script src="game.js"></script>
   </body>
