@@ -3,7 +3,9 @@ const ctx = canvas.getContext("2d");
 
 const paddleWidth = 100;
 const paddleHeight = 10;
-const playerSpeed = 2;
+var playerSpeed = 4;
+
+
 let leftArrowPressed = false;
 let rightArrowPressed = false;
 let gameover=false;
@@ -29,9 +31,9 @@ const ball = {
   x: canvas.width / 2,
   y: canvas.height / 2,
   radius: 7,
-  speed: 2,
-  velocityX: 2,
-  velocityY: 2,
+  speed: 4,
+  velocityX: 4,
+  velocityY: 4,
   color: "#ca03fc",
 };
 let brickArr=new Array();
@@ -65,7 +67,7 @@ function drawBrick(x,y,width,height,color){
   ctx.fillStyle=color;
   ctx.fillRect(x,y,width,height);
 }
-console.log(brickArr[1].color);
+
 function drawBricks(){
   for(let i=0;i<brickArr.length;i++){
     drawBrick(brickArr[i].x,brickArr[i].y,brickArr[i].width,brickArr[i].height,brickArr[i].color);
@@ -79,7 +81,7 @@ function render() {
   drawBall(ball.x, ball.y, ball.radius, ball.color);
   //drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
 
-  drawScore(canvas.width/10,canvas.height/9,user.score);
+ // drawScore(canvas.width/10,canvas.height/9,user.score);
   //drawBrick(brick.x,brick.y,brick.width,brick.height,brick.color);
   drawBricks();
 }
@@ -111,7 +113,7 @@ let player=user;
     gameover=true;
     reset();
   }
-//TODO: fix the angle depending on where in player hits
+
   if (collisionDetect(player, ball)) {
   
     // default angle is 0deg in Radian
@@ -152,13 +154,13 @@ let player=user;
 
 
     /* change velocity of ball according to on which paddle the ball hit */
-    ball.velocityY =  -1*ball.speed*0.1 * Math.cos(angle);
-    ball.velocityX = ball.speed*0.1 * Math.sin(angle);
+    ball.velocityY =  -1*ball.speed*1 * Math.cos(angle);
+    ball.velocityX = ball.speed*1 * Math.sin(angle);
 
     // increase ball speed
-    ball.speed += 2;
+    ball.speed += 1;
     //increase player speed?
-   // playerSpeed += 2;
+    playerSpeed += 2;
   }
   /*
   if(collisionDetect(brick,ball)){
@@ -175,7 +177,10 @@ let player=user;
     brickArr[i].color="#0000"
     user.score++;
     document.getElementById("score").innerHTML=user.score;
-    }
+    ball.velocityY=-ball.velocityY;
+    ball.velocityX=-ball.velocityX;  
+
+  }
   }
 }
 function collisionDetect(player, ball) {
@@ -215,9 +220,13 @@ function reset(){
   ball.x=canvas.width/2;
   ball.y=canvas.height/2;
   ball.speed=2;
+  playerSpeed=4;
 
 ball.velocityY=-ball.velocityY;
 ball.velocityX=-ball.velocityX;
+if(user.score===57){
+  render();
+}
 }
 //moving
 window.addEventListener('keydown', keyDownHandler);
@@ -250,44 +259,3 @@ function gameLoop() {
 }
 setInterval(gameLoop, 100 / 60);
 
-//testin to move elements by cursor
-/*
-function detectKey(e) {
-  let player = document.getElementById("player");
-  let screen = document.getElementById("screen");
-const speed=10;
-  //console.log("screen width " + screen.getBoundingClientRect().width);
-  //console.log("screen height " + screen.getBoundingClientRect().height);
-  //console.log(player.getBoundingClientRect().x+' p position');
-
-  let posLeft2 = player.offsetLeft;
-  let posLeft=screen.offsetLeft;
-  let posTop = player.offsetTop;
-  
-  //console.log("posTop " + posTop);
-  //console.log("posLeft " + posLeft);
-  e = e || window.event;
-
-  if (e.keyCode == "32") {
-    // up arrow
-    player.style.marginTop = posTop - speed * 4 + "px";
-    //player.top((posTop-58*4)+"px");
-  } else if (e.keyCode == "40") {
-    // down arrow
-    player.style.marginTop = posTop + speed + "px";
-  } else if (e.keyCode == "37") {
-    // left arrow
-    player.style.marginLeft = posLeft-posLeft2 - speed + "px";
-   // player.style.rotate = "45deg";
-  } else if (e.keyCode == "39") {
-    // right arrow
-    player.style.marginLeft = posLeft + speed + "px";
-  }
-  if (posTop < document.getElementById("screen").offsetTop) {
-    document.getElementById("player").style.backgroundColor = "red";
-    document.getElementById("player").style.marginTop = posTop + "px";
-    console.log(posTop);
-  }
-}
-
-*/
