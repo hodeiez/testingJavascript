@@ -224,9 +224,7 @@ function reset(){
 
 ball.velocityY=-ball.velocityY;
 ball.velocityX=-ball.velocityX;
-if(user.score===57){
-  render();
-}
+
 }
 //moving
 window.addEventListener('keydown', keyDownHandler);
@@ -254,8 +252,14 @@ function keyUpHandler(event) {
   }
 }
 function gameLoop() {
+  if(user.score===57){
+    drawScore(canvas.width/4,canvas.height/4,"refresh the page to restart");
+  }
+  else{
   update();
   render();
+  }
 }
+
 setInterval(gameLoop, 100 / 60);
 
