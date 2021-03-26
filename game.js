@@ -24,7 +24,7 @@ const brick = {
   y: canvas.height-(canvas.height-10),
   width:30,
   height:10,
-  color: "#03fc6f",
+  color: "#c96b00",
 };
 
 const ball = {
@@ -34,7 +34,7 @@ const ball = {
   speed: 4,
   velocityX: 4,
   velocityY: 4,
-  color: "#ca03fc",
+  color: "#828bea"
 };
 let brickArr=new Array();
   for(let i=0;i<19;i++){
