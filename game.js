@@ -16,7 +16,7 @@ const user = {
   y: canvas.height - 20,
   width: paddleWidth,
   height: paddleHeight,
-  color: "#FFFFFF",
+  color: "#000000",
   score: 0,
 };
 const brick = {
@@ -75,7 +75,7 @@ function drawBricks(){
 }
 
 function render() {
-  ctx.fillStyle = "#000";
+  ctx.fillStyle = "#FFFF";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
   drawPaddle(user.x, user.y, user.width, user.height, user.color);
   drawBall(ball.x, ball.y, ball.radius, ball.color);
