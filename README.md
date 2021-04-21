@@ -1,6 +1,7 @@
 # testingJavascript
 testing and experimentig with javascript
+now has a basic Arkanoid game.
 
 ## watch it here:
-**https://distracted-hypatia-91e284.netlify.app/**
+**https://oldgamesnew.netlify.app/**
 
